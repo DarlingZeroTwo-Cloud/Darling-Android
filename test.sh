@@ -64,6 +64,7 @@ test_scripts() {
     test_case "check-update.sh" "test -x scripts/check-update.sh"
     test_case "help.sh" "test -x scripts/help.sh"
     test_case "check-init.sh" "test -x scripts/check-init.sh"
+    test_case "check-network.sh" "test -x scripts/check-network.sh"
 }
 
 # 检查文件
