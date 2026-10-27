@@ -56,6 +56,7 @@ test_scripts() {
     test_case "uninstall-app.sh" "test -x scripts/uninstall-app.sh"
     test_case "service.sh" "test -x scripts/service.sh"
     test_case "logs.sh" "test -x scripts/logs.sh"
+    test_case "setup-env.sh" "test -x scripts/setup-env.sh"
 }
 
 # 检查文件
