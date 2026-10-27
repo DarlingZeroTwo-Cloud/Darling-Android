@@ -24,6 +24,7 @@
 - darling 命令支持 remove 子命令
 - 服务管理脚本（start/stop/restart）
 - 日志查看脚本
+- 中文 README
 
 ### 特性
 - chroot 隔离，无容器开销
