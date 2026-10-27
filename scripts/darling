@@ -44,6 +44,26 @@ run_app() {
     # TODO: 实现应用启动
 }
 
+# 列出应用
+list_apps() {
+    info "已安装应用:"
+    
+    if [ -d "$DARLING_ANDROID_DIR/data/app" ]; then
+        ls -1 "$DARLING_ANDROID_DIR/data/app"/*.apk 2>/dev/null | while read apk; do
+            name=$(basename "$apk" .apk)
+            echo "  - $name"
+        done
+    else
+        warn "没有已安装的应用"
+    fi
+}
+
+# 状态检查
+status_check() {
+    info "状态检查..."
+    bash "$(dirname "$0")/status.sh"
+}
+
 # 主函数
 main() {
     case "$1" in
@@ -53,12 +73,20 @@ main() {
         run)
             run_app "$2"
             ;;
+        list)
+            list_apps
+            ;;
+        status)
+            status_check
+            ;;
         *)
             echo "Darling Android - 在 Linux 上运行 Android 应用"
             echo ""
             echo "用法:"
             echo "  darling install <apk文件>    安装 APK"
             echo "  darling run <包名>           运行应用"
+            echo "  darling list                列出已安装应用"
+            echo "  darling status              状态检查"
             echo "  darling --help              显示帮助"
             exit 1
             ;;
