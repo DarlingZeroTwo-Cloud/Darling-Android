@@ -53,6 +53,7 @@ test_scripts() {
     test_case "build.sh" "test -x build.sh"
     test_case "release.sh" "test -x release.sh"
     test_case "update.sh" "test -x update.sh"
+    test_case "clean.sh" "test -x clean.sh"
     test_case "version.sh" "test -x scripts/version.sh"
     test_case "status.sh" "test -x scripts/status.sh"
     test_case "list-apps.sh" "test -x scripts/list-apps.sh"
