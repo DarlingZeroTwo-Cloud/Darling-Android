@@ -1,5 +1,8 @@
 # Darling Android
 
+[![Test](https://github.com/DarlingZeroTwo-Cloud/Darling-Android/actions/workflows/test.yml/badge.svg)](https://github.com/DarlingZeroTwo-Cloud/Darling-Android/actions/workflows/test.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 在 Linux 上通过 chroot 方式原生运行 Android 应用。
 
 ## 特性
