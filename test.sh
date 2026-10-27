@@ -68,6 +68,7 @@ test_scripts() {
     test_case "check-disk.sh" "test -x scripts/check-disk.sh"
     test_case "check-gpu.sh" "test -x scripts/check-gpu.sh"
     test_case "check-cpu.sh" "test -x scripts/check-cpu.sh"
+    test_case "check-memory.sh" "test -x scripts/check-memory.sh"
 }
 
 # 检查文件
