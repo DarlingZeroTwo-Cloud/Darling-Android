@@ -1,0 +1,5 @@
+*.so
+*.apk
+*.img
+build/
+cache/
