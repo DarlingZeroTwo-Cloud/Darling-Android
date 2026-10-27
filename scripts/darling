@@ -64,6 +64,18 @@ status_check() {
     bash "$(dirname "$0")/status.sh"
 }
 
+# 卸载应用
+uninstall_app() {
+    local app_name="$1"
+    
+    if [ -z "$app_name" ]; then
+        error "请指定应用名称"
+        exit 1
+    fi
+    
+    bash "$(dirname "$0")/uninstall-app.sh" remove "$app_name"
+}
+
 # 主函数
 main() {
     case "$1" in
@@ -79,6 +91,9 @@ main() {
         status)
             status_check
             ;;
+        remove|uninstall)
+            uninstall_app "$2"
+            ;;
         *)
             echo "Darling Android - 在 Linux 上运行 Android 应用"
             echo ""
@@ -86,6 +101,7 @@ main() {
             echo "  darling install <apk文件>    安装 APK"
             echo "  darling run <包名>           运行应用"
             echo "  darling list                列出已安装应用"
+            echo "  darling remove <应用名称>     卸载应用"
             echo "  darling status              状态检查"
             echo "  darling --help              显示帮助"
             exit 1
