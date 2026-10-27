@@ -27,6 +27,7 @@
 - 中文 README
 - .gitattributes
 - 安全策略文档
+- 行为准则文档
 
 ### 特性
 - chroot 隔离，无容器开销
