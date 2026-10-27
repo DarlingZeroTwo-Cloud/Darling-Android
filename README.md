@@ -41,6 +41,12 @@ darling install /path/to/app.apk
 
 # 运行应用
 darling run com.example.app
+
+# 列出已安装应用
+darling list
+
+# 状态检查
+darling status
 ```
 
 ## ARM 转译
