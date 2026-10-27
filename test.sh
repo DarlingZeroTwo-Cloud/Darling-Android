@@ -51,6 +51,7 @@ test_scripts() {
     test_case "install.sh" "test -x install.sh"
     test_case "uninstall.sh" "test -x uninstall.sh"
     test_case "version.sh" "test -x scripts/version.sh"
+    test_case "status.sh" "test -x scripts/status.sh"
 }
 
 # 检查文件
