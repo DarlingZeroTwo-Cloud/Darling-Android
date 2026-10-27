@@ -45,6 +45,9 @@ darling run com.example.app
 # 列出已安装应用
 darling list
 
+# 卸载应用
+darling remove com.example.app
+
 # 状态检查
 darling status
 ```
