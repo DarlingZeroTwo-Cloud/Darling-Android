@@ -61,6 +61,7 @@ test_scripts() {
     test_case "logs.sh" "test -x scripts/logs.sh"
     test_case "setup-env.sh" "test -x scripts/setup-env.sh"
     test_case "check-update.sh" "test -x scripts/check-update.sh"
+    test_case "help.sh" "test -x scripts/help.sh"
 }
 
 # 检查文件
