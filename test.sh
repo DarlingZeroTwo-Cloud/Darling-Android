@@ -50,6 +50,7 @@ test_scripts() {
     test_case "darling" "test -x scripts/darling"
     test_case "install.sh" "test -x install.sh"
     test_case "uninstall.sh" "test -x uninstall.sh"
+    test_case "build.sh" "test -x build.sh"
     test_case "version.sh" "test -x scripts/version.sh"
     test_case "status.sh" "test -x scripts/status.sh"
     test_case "list-apps.sh" "test -x scripts/list-apps.sh"
