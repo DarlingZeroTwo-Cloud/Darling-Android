@@ -22,6 +22,7 @@
 - darling 命令支持 list 和 status 子命令
 - 卸载应用脚本
 - darling 命令支持 remove 子命令
+- 服务管理脚本（start/stop/restart）
 
 ### 特性
 - chroot 隔离，无容器开销
