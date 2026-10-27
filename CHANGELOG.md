@@ -25,6 +25,8 @@
 - 服务管理脚本（start/stop/restart）
 - 日志查看脚本
 - 中文 README
+- .gitattributes
+- 安全策略文档
 
 ### 特性
 - chroot 隔离，无容器开销
