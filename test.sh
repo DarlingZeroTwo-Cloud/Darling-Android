@@ -58,6 +58,9 @@ test_files() {
     info "=== 测试文件 ==="
     
     test_case "README.md" "test -f README.md"
+    test_case "LICENSE" "test -f LICENSE"
+    test_case "CHANGELOG.md" "test -f CHANGELOG.md"
+    test_case "CONTRIBUTING.md" "test -f CONTRIBUTING.md"
     test_case "darling.conf" "test -f darling.conf"
     test_case ".gitignore" "test -f .gitignore"
 }
