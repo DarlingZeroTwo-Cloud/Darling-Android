@@ -13,6 +13,11 @@
 - 测试脚本
 - 配置文件
 - LICENSE (GPL-3.0)
+- CHANGELOG.md
+- CONTRIBUTING.md
+- GitHub Actions 自动测试
+- 版本信息脚本
+- 状态检查脚本
 
 ### 特性
 - chroot 隔离，无容器开销
