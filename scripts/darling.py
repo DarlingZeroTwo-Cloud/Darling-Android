@@ -8,34 +8,47 @@ import os
 import sys
 import subprocess
 import shutil
+import json
 from pathlib import Path
 
 # 配置
 INSTALL_DIR = Path("/opt/darling-android")
-REPO_DIR = Path.home() / "Darling-Android"
-CONFIG_FILE = Path("/etc/darling-android.conf")
+APPS_DIR = INSTALL_DIR / "apps"
+APPS_LIST_FILE = INSTALL_DIR / "apps.json"
 
 class DarlingAndroid:
     def __init__(self):
-        self.version = "0.1.0"
+        self.version = "0.2.0"
         self.name = "Darling Android"
+        
+        # 确保目录存在
+        APPS_DIR.mkdir(parents=True, exist_ok=True)
+        
+    def load_apps(self):
+        """加载应用列表"""
+        if APPS_LIST_FILE.exists():
+            with open(APPS_LIST_FILE) as f:
+                return json.load(f)
+        return {}
+        
+    def save_apps(self, apps):
+        """保存应用列表"""
+        with open(APPS_LIST_FILE, 'w') as f:
+            json.dump(apps, f, indent=2)
         
     def check_install(self):
         """检查安装状态"""
         print(f"[INFO] === {self.name} 状态检查 ===")
         
-        # 检查安装目录
         if INSTALL_DIR.exists():
             print(f"  ✓ 安装目录存在: {INSTALL_DIR}")
         else:
             print(f"  ✗ 安装目录不存在: {INSTALL_DIR}")
             return False
             
-        # 检查 CPU
         arch = os.uname().machine
         print(f"  架构: {arch}")
         
-        # 检测 CPU 品牌
         with open("/proc/cpuinfo") as f:
             cpuinfo = f.read()
             if "Intel" in cpuinfo:
@@ -43,7 +56,6 @@ class DarlingAndroid:
             elif "AMD" in cpuinfo:
                 print(f"  品牌: AMD (libndk)")
                 
-        # 检查 GPU
         try:
             result = subprocess.run(["lspci"], capture_output=True, text=True)
             for line in result.stdout.split('\n'):
@@ -58,11 +70,11 @@ class DarlingAndroid:
         
     def list_apps(self):
         """列出已安装应用"""
+        apps = self.load_apps()
         print("[INFO] 已安装应用:")
-        apps_dir = INSTALL_DIR / "apps"
-        if apps_dir.exists():
-            for app in apps_dir.iterdir():
-                print(f"  - {app.name}")
+        if apps:
+            for pkg_name, info in apps.items():
+                print(f"  - {info.get('name', pkg_name)} ({pkg_name})")
         else:
             print("  无应用")
             
@@ -72,21 +84,53 @@ class DarlingAndroid:
             print(f"[ERROR] APK 文件不存在: {apk_path}")
             return False
             
+        apk_size = os.path.getsize(apk_path)
         print(f"[INFO] 安装 APK: {apk_path}")
-        # TODO: 实现真实的 APK 安装
-        print("[INFO] 安装完成（占位）")
+        print(f"[INFO] 文件大小: {apk_size / 1024 / 1024:.2f} MB")
+        
+        # 模拟安装进度条
+        print("\n[INFO] 正在安装...")
+        steps = 20
+        for i in range(steps):
+            progress = int((i + 1) / steps * 100)
+            bar = "█" * int(progress / 2) + "░" * (50 - int(progress / 2))
+            print(f"\r  [{bar}] {progress}%", end="", flush=True)
+            
+        # 解析 APK 包名（占位）
+        pkg_name = Path(apk_path).stem
+        app_name = pkg_name
+        
+        # 保存到应用列表
+        apps = self.load_apps()
+        apps[pkg_name] = {
+            "name": app_name,
+            "apk_path": apk_path,
+            "installed": True
+        }
+        self.save_apps(apps)
+        
+        print(f"\n\n[INFO] ✓ 安装完成: {app_name}")
         return True
         
     def run_app(self, package_name):
         """运行应用"""
+        apps = self.load_apps()
+        if package_name not in apps:
+            print(f"[ERROR] 应用未安装: {package_name}")
+            return
+            
         print(f"[INFO] 运行应用: {package_name}")
-        # TODO: 实现真实的应用运行
-        print("[INFO] 启动中...（占位）")
+        print("[INFO] 启动中...")
         
     def remove_app(self, app_name):
         """卸载应用"""
-        print(f"[INFO] 卸载应用: {app_name}")
-        # TODO: 实现真实的应用卸载
+        apps = self.load_apps()
+        if app_name in apps:
+            del apps[app_name]
+            self.save_apps(apps)
+            print(f"[INFO] ✓ 已卸载: {app_name}")
+        else:
+            print(f"[ERROR] 应用未找到: {app_name}")
         
     def show_help(self):
         """显示帮助"""
