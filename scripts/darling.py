@@ -13,8 +13,9 @@ from pathlib import Path
 
 # 配置
 INSTALL_DIR = Path("/opt/darling-android")
-APPS_DIR = INSTALL_DIR / "apps"
-APPS_LIST_FILE = INSTALL_DIR / "apps.json"
+DATA_DIR = Path.home() / ".local/share/darling-android"
+APPS_DIR = DATA_DIR / "apps"
+APPS_LIST_FILE = DATA_DIR / "apps.json"
 
 class DarlingAndroid:
     def __init__(self):
